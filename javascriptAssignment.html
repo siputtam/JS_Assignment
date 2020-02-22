@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <style>
+            #Occupation{
+                width: 150px;
+            }
+            #Experience{
+                width: 150px;
+            }
+        </style>
+        <title>ASSIGNMENT-3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="createCheckbox()">
+        <form>
+            First Name:<br> <input type="text" id="fname" name="firstname"><br><br>
+            Last Name:<br> <input type="text" id="lname" name="lastname"><br><br>
+            Email:<br><input type="email" id="emailid" name="emailAddress"><br><br>
+            Contact Number: <br><input type="number" id="contactno" name="contact"><br><br>
+            Address:<br> <textarea id="Address" name="Address"> </textarea><br><br>
+            Username:<br> <input type="text" id="user" name="uname"><br><br>
+            Password:<br><input type="password" id="pwd" name="userpwd"><br><br>
+            
+            Gender:<br><input type="radio" id="gender1" name="gender" value="male">Male<br>
+            <input type="radio" id="gender1" name="gender" value="female">Female<br><br>
+            
+            Qualification:<br> 
+            <select id="Occupation" name="Occupation">
+                <option label="--Select-- "></option>
+            </select><br><br>
+            
+            Experience:<br>
+            <select id="Experience" name="Experience">
+                <option label="--Select-- "></option>
+            </select><br><br>
+            
+            Coding Languages:<br>
+            <div id="check"></div> <br><br>
+            <input type="submit" value="submit" id="submit_button">
+        </form>
+        <script type="text/javascript">
+        	 var exp_array = ["fresher",1,2,3,4,5];
+			var experience = document.getElementById("Experience");
+			for (var i = 0; i < exp_array.length ; i++)
+			{
+				var option = document.createElement("option");
+				option.text = exp_array[i];
+				option.id = exp_array[i];
+			    experience.add(option);
+			}
+        	var qual_array = ['MCA','BCA','Btech','MTech','Msc'];
+        	var qualification = document.getElementById("Occupation");
+			for (var i = 0; i < qual_array.length ; i++)
+			{
+				var option = document.createElement("option");
+				option.text = qual_array[i];
+				option.id = qual_array[i];
+	    		qualification.add(option);
+			}
+			function createCheckbox()
+			{
+				coding_languages = [{name: "C/C++",IsEnabled:false},{name: "Java",IsEnabled:true},{name: "C#",IsEnabled:true},{name: "PHP",IsEnabled:false},{name: "Python",IsEnabled:false}];
+				for(var i=0 ; i<coding_languages.length;i++)
+				{
+					var checkdiv = document.getElementById('check');
+              		var cb = document.createElement('input');
+        			cb.type = "checkbox";
+        			cb.id = "languages";
+        			cb.value = coding_languages[i].name;
+        			cb.checked = coding_languages[i].IsEnabled;
+        			var label = document.createElement("label");
+					label.appendChild(document.createTextNode(coding_languages[i].name));
+					checkdiv.appendChild(cb);
+					checkdiv.appendChild(label);
+					checkdiv.appendChild(document.createElement("br"));
+				}
+			}
+			 document.getElementById("submit_button").addEventListener("click",
+        	function(e) {
+            var employee={};
+            e.preventDefault();
+            employee.fname = document.getElementById("fname").value;
+           employee.lname = document.getElementById("lname").value;
+            employee.email = document.getElementById("emailid").value;
+            employee.contact = document.getElementById("contactno").value;
+            employee.address = document.getElementById("Address").value;
+            employee.username = document.getElementById("user").value;
+            employee.password = document.getElementById("pwd").value;
+            employee.gender = document.getElementById("gender1").value;
+            employee.qualification = document.getElementById("Occupation").value;
+            employee.experience = document.getElementById("Experience").value;
+			
+            employee.codingLanguages = document.querySelectorAll("#languages:checked");
+
+            // Printing
+           console.log(employee.fname);
+           console.log(employee.lname);
+           console.log(employee.email);
+           console.log(employee.contact);
+           console.log(employee.address);
+           console.log(employee.username);
+           console.log(employee.password);
+           console.log(employee.gender);
+		   console.log(employee.qualification);
+		   console.log(employee.experience);
+		   for(i=0;i<employee.codingLanguages.length;i++)
+                console.log(employee.codingLanguages[i].value);
+        })
+        </script>
+    </body>
+</html>
